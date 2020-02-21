@@ -121,8 +121,19 @@ class Product:
         Label(self.edit_wind,text='old price').grid(row=2,column=1)
         Entry(self.edit_wind, textvariable=StringVar(self.edit_wind,value=old_price),state='readonly').grid(row=2,column=2)
         #new price
+        Label(self.edit_wind,text='New Price').grid(row=3,column=1)
+        new_price=Entry(self.edit_wind)
+        new_price.grid(row=3,column=2)
 
+        Button(self.edit_wind,text='Update',command=lambda:self.edit_records(new_name.get(),name,new_price.get(),PYold_price)).grid(row=4,column=2,sticky=W)
 
+    def edit_records(self,new_name,name,new_price,old_price):
+        query='UPDATE product SET name=?, price=? WHERE name=? AND price=?'
+        parameters=(new_name,new_price,name,old_price)
+        self.run_query(query,parameters)
+        self.edit_wind.destroy()
+        self.message['text']='Record {} updated successfully'.format(name)
+        self.get_products()
     
 if __name__ == '__main__':
     window = Tk()
