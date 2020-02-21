@@ -117,6 +117,11 @@ class Product:
         new_name=Entry(self.edit_wind)
         new_name.grid(row=1,column=2)
 
+        #old price
+        Label(self.edit_wind,text='old price').grid(row=2,column=1)
+        Entry(self.edit_wind, textvariable=StringVar(self.edit_wind,value=old_price),state='readonly').grid(row=2,column=2)
+        #new price
+
 
     
 if __name__ == '__main__':
